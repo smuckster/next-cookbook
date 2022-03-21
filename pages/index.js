@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Script from 'next/script'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -66,4 +67,14 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?content_type=recipe`, {
+    headers: {
+      'Authorization': `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`
+    }
+  })
+  const recipes = await res.json()
+  return {props: {recipes: recipes} }
 }

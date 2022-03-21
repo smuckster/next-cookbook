@@ -1,0 +1,14 @@
+.ingredient {
+	padding: 6px 12px;
+	margin-bottom: 6px;
+	transition: 0.2s;
+}
+
+.editable {
+	
+}
+
+.editable:hover {
+	composes: ingredient;
+	background-color: #eee;
+}
